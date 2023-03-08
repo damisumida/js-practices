@@ -13,13 +13,13 @@ if(argv.m != undefined){
 let first_day = new Date(year, month, 2)
 let last_day = new Date(year, month + 1, 0)
 
-console.log((month+1 + "月 " + year).padStart(13));
-console.log("日 月 火 水 木 金 土");
-
+console.log((month+1 + "月 " + year).padStart(13))
+console.log("日 月 火 水 木 金 土")
 let first_week = ''
 for (let i = 1; i <= 8-first_day.getDay(); i++){
   first_week = first_week.concat(String(i).padStart(2))
   first_week = first_week.concat(' ')
+  if(first_day.getDay() == 0){ break; }
 }
 console.log(first_week.padStart(21))
 
