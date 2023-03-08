@@ -10,13 +10,26 @@ for(let i = 2;i < process.argv.length; i++){
   }
 }
 let first_day = new Date(year, month, 2)
-let last_day = new Date(year, month + 1, 1)
+let last_day = new Date(year, month + 1, 0)
 
-console.log(year + "年" + String(month + 1) + "月");
+console.log(first_day.getFullYear() + "年" + first_day.getMonth() + "月");
 console.log("日 月 火 水 木 金 土");
+
 let first_week = ' '
 for (let i = 1; i <= 8-first_day.getDay(); i++){
-  first_week = first_week.concat(String(i).padStart(3))
+  first_week = first_week.concat(' ')
+  first_week = first_week.concat(String(i).padStart(2))
 }
-console.log(first_week.padStart(21))
-console.log(last_day)
+console.log(first_week.padStart(20))
+
+for (let i = 0; i < 4; i++){
+  let week = ''
+  for(let j = 1; j < 8; j++){
+    if (last_day.getDate() < 8-first_day.getDay() + j + i * 7){
+      break;
+    }
+    week = week.concat(String(8-first_day.getDay() + j + i * 7).padStart(2))
+    week = week.concat(' ')
+  }
+  console.log(week)
+}
