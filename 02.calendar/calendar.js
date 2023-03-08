@@ -12,7 +12,7 @@ for(let i = 2;i < process.argv.length; i++){
 let first_day = new Date(year, month, 2)
 let last_day = new Date(year, month + 1, 0)
 
-console.log(first_day.getFullYear() + "年" + first_day.getMonth() + "月");
+console.log((first_day.getMonth() + "月 " + first_day.getFullYear()).padStart(15));
 console.log("日 月 火 水 木 金 土");
 
 let first_week = ' '
