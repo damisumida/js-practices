@@ -1,31 +1,15 @@
 function disp_calendar(){
   const argv = require('minimist')(process.argv.slice(2));
   const now = new Date()
-  const year = parse_year(argv, now)
-  const month = parse_month(argv, now)
-  const first_day = new Date(year, month, 2)
-  const last_day = new Date(year, month + 1, 0)
+  const year = (argv.y != undefined) ? argv.y : now.getFullYear()
+  const month = (argv.m != undefined) ? argv.m - 1 : now.getMonth()
+  const first_date = new Date(year, month, 2)
+  const last_date = new Date(year, month + 1, 0)
 
   console.log((month + 1 + "月 " + year).padStart(13))
   console.log("日 月 火 水 木 金 土")
-  disp_first_week(first_day)
-  disp_nextweeks(first_day, last_day)
-}
-
-function parse_year(argv, now){
-  if(argv.y != undefined){
-    return argv.y
-  } else {
-    return now.getFullYear()
-  }
-}
-
-function parse_month(argv, now){
-  if(argv.m != undefined){
-    return argv.m - 1
-  } else {
-    return now.getMonth()
-  }
+  disp_first_week(first_date)
+  disp_nextweeks(first_date, last_date)
 }
 
 function disp_first_week(first_day){
@@ -37,8 +21,8 @@ function build_first_week(first_day){
   let week = ''
   for (let i = 1; i <= 8-first_day.getDay(); i++){
     week = week.concat(String(i).padStart(2))
-    week = week.concat(' ')
     if(first_day.getDay() == 0){ break; }
+    week = week.concat(' ')
   }
   return week
 }
